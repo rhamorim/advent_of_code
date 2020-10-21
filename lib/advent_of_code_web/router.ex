@@ -17,7 +17,8 @@ defmodule AdventOfCodeWeb.Router do
   scope "/", AdventOfCodeWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    #live "/", PageLive, :index
+    live "/", AdventLive, :index
   end
 
   # Other scopes may use custom stacks.
