@@ -1,5 +1,4 @@
 defmodule AdventOfCode.Events.Event2019.Day01 do
-
   def part_one(input) do
     input
     |> String.split()
@@ -18,6 +17,7 @@ defmodule AdventOfCode.Events.Event2019.Day01 do
 
   def calc_fuel_2_tc(mass, fuel) do
     f = div(mass, 3) - 2
+
     if f > 0 do
       calc_fuel_2_tc(f, fuel + f)
     else
@@ -32,5 +32,4 @@ defmodule AdventOfCode.Events.Event2019.Day01 do
     |> Enum.map(&calc_fuel_2/1)
     |> Enum.sum()
   end
-
 end
