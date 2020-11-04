@@ -9,12 +9,12 @@ defmodule AdventOfCodeWeb.AdventLive do
 
   @impl true
   def handle_event("save", %{"advent_form" => params}, socket) do
-    IO.inspect(params)
+    #IO.inspect(params)
     changeset = AdventForm.changeset(%AdventForm{}, params)
-    IO.inspect(changeset)
+    #IO.inspect(changeset)
     socket = case Ecto.Changeset.apply_action(changeset, :insert) do
                {:error, changeset} ->
-                IO.inspect(changeset)
+                 #IO.inspect(changeset)
                  assign(socket, changeset: changeset, result: nil)
                {:ok, data} ->
                  result = AdventOfCode.Events.run(
@@ -23,7 +23,7 @@ defmodule AdventOfCodeWeb.AdventLive do
                             data.part,
                             data.input
                           )
-                 IO.inspect(result)
+                 #IO.inspect(result)
                  assign(socket, changeset: changeset, result: result)
              end
     {:noreply, socket}
@@ -37,7 +37,7 @@ defmodule AdventOfCodeWeb.AdventLive do
     <%= f = form_for @changeset, "#", [phx_submit: :save] %>
 
     <%= label f, :year %>
-    <%= select f, :year, 2015..2019 %>
+    <%= select f, :year, 2015..2019, selected: 2019 %>
     <%= error_tag f, :year %>
 
     <%= label f, :day %>
@@ -58,9 +58,9 @@ defmodule AdventOfCodeWeb.AdventLive do
     <%= if @result do %>
     <%= case @result do %>
       <% {:ok, r} -> %>
-      Result: <%= r %>
+      Result: <pre><%= r %></pre>
       <% {:error, e} -> %>
-      Error: <%= e %>
+      Error: <pre><%= e %></pre>
       <% _ -> %>
     <% end %>
     <% end %>
