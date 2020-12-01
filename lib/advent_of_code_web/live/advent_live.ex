@@ -37,7 +37,7 @@ defmodule AdventOfCodeWeb.AdventLive do
     <%= f = form_for @changeset, "#", [phx_submit: :save] %>
 
     <%= label f, :year %>
-    <%= select f, :year, 2015..2019, selected: 2019 %>
+    <%= select f, :year, 2015..2020, selected: 2020 %>
     <%= error_tag f, :year %>
 
     <%= label f, :day %>
